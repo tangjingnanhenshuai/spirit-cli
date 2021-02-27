@@ -28,14 +28,17 @@ function start(){
             startspritesmith(arguments[0])
         }
     }catch{
-        console.log("请检查路径！")
+        console.log("请检查路径！！！")
     }
 }
 
 async function startspritesmith(pathurl){
     let res = await  unifiedFile(pathurl)
-    console.log("开始进行合并")
+    console.log("开始进行合并～")
     let resmege = await  merge(res,pathurl)
+    if(resmege){
+    console.log('精灵图合并完毕～')
+    }
     return true
 }
 function unifiedFile(pathurl){
