@@ -16,7 +16,6 @@ var ProgressBar = require('progress');
 //     clearInterval(timer);
 //   }
 // }, 100);
-
 start()
 function start(){
     var arguments = process.argv.splice(2)
@@ -84,7 +83,7 @@ async function readFileList (path, filesList) {
     files.forEach(function (filename, index) {
         try{
             let valdata= fs.readFileSync(join(path+filename))
-            let info = imageInfo(valdata)
+            let info = imageInfo(valdata) // 读取图片原本的信息、获取最初始的后缀
             if(!info){ return }
             let filenameList=filename.split('.')
             const fileLast=filenameList[filenameList.length-1]
@@ -92,6 +91,7 @@ async function readFileList (path, filesList) {
             if(fileTypeList.indexOf(info.format.toLocaleLowerCase())==-1){
                    fileTypeList.push(info.format.toLocaleLowerCase())
             }
+            // 如果图片当前的后缀 和 原本的后缀不一致、 需要先修改后缀
             if( fileLast.toLocaleUpperCase() != info.format ){
                 rename(path+filename, path+filenameList.join('.'), filename, filenameList.join('.'));
             }
